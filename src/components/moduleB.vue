@@ -9,6 +9,7 @@
     <div>getter: {{playBtn}}</div>
     <div style="padding-top: 40px;">
       <a @click="goPlay2">playBtn2</a>
+      <a @click="waitPlay">waitToPlay</a>
     </div>
     <div>count: {{count}}</div>
     <div style="padding-top: 40px;">
@@ -17,7 +18,7 @@
   </div>
 </template>
 <script>
-  import {mapState, mapGetters, mapMutations} from 'vuex';
+  import {mapState, mapGetters, mapMutations, mapActions} from 'vuex';
   import store from "../store";
   export default {
     name: 'moduleB',
@@ -56,8 +57,15 @@
         let now = this.play;
         this.setPlay(!now);
       },
+      waitPlay(){
+        let now = this.play;
+        this.waitToPlay(!now);
+      },
       ...mapMutations('modulesB', [
         'setPlay'
+      ]),
+      ...mapActions('modulesB', [
+        'waitToPlay'
       ])
     }
   }
